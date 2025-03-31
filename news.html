@@ -4,31 +4,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>News & Events | Trinity College Nabbingo</title>
+        <link rel="stylesheet" href="css/header_footer.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/calendar.css">
-        <script src="js/calendar.js" defer></script>
+        <script src="js/script.js"></script>
     </head>
-    <boby>
-    <header>
-        <div>
-            <img src="images/logo.jpeg" alt="School Logo">
-        </div>
-        <div class="header-content">
-            <div class="header-title">
-                <h1>School News & Events</h1> 
-            </div>     
-        <nav>
-            <a href="news_main.html">Home</a><span>|</span>
-            <a href="about.html">About</a><span>|</span>
-            <a href="index.html">News</a><span>|</span>
-            <a href="upcoming_events.html">Events</a><span>|</span>
-            <a href="contact.html">Contact</a>
-        </nav>
-        </div><div>
-        <h2>Trinnity College</h2>
-        <h2>Nabbingo</h2>
-        </div>
-    </header>    
+    <body>
+    <div id="header"></div>    
     <main>
 
       <div>
@@ -48,14 +30,14 @@
                 <a href="featured_news.html">Read more</a>
         </article>
         
-        <section>
-          <div class="subscription-form">
-                <h2>Subscribe to Our Newsletter</h2>
-                 <form action="/subscribe" method="POST">
-                      <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                     <button type="submit">Subscribe</button>
-                 </form>
-          </div>
+        <section class="event-section">
+                <div class="event-submission-form">
+                  <h2>Submit Your Event</h2>
+                  <p>Share with us your</p>
+                  <p>new and events</p>
+                  <p>by clicking below</p>
+                  <a href="news_upload.html" class="event-submission-btn">Submit Your Event</a>
+                </div>  
         </section>
 
       </div>
@@ -127,52 +109,8 @@
         </section>
 
         </main>
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                <img src="images/logo.jpeg" alt="School Logo">
-                </div>
-                <div class="footer-section">
-                    <h3>QUICK LINKS</h3>
-                    <a href="#">FAQ</a>
-                    <a href="#">News Archive</a>
-                    <a href="#">Gallery</a>
-                    <a href ="#">School Programme</a>
-                </div>
 
-                <div class="footer-section">
-                    <h3>ACADEMICS</h3>
-                    <a href="#">Curriculum</a>
-                    <a href="#">E-library</a>
-                    <a href="#">E-learning</a>
-                    <a href ="#">Virtual Classes</a>
-                </div>
-
-                <div class="footer-section">
-                    <h3>SOCIAL</h3>
-                    <a href="#">Facebook</a>
-                    <a href="#">Twitter</a>
-                    <a href="#">Instagram</a>
-                    <a href ="#">Youtube</a>
-                </div>
-
-                <div class="footer-section">
-                    <h3>ABOUT US</h3>
-                    <a href="#">History</a>
-                    <a href="#">Alumni</a>
-                    <a href="#">Staff</a>
-                    <a href ="#">Board of Governors</a>
-                </div>
-                
-                <div class="contact-info">
-                    <h3>CONTACT</h3>
-                    <p>Nabbingo,9 Miles Kla-Masaka Rd.</p>
-                    <p>Uganda - East Africa,</p>
-                    <p>+256 771632710</p>
-                    <p>trinitycollegenabbingo@gmail.com</p>
-                </div>
-            </div>
-            <p>&copy; 2024 Trinity College Nabbingo. All rights reserved.</p> 
-        </footer>
-    </boby>
+        <div id="footer"></div>
+        <script src="js/calendar.js"></script>
+    </body>
 </html>
