@@ -41,6 +41,12 @@ nav a {
     padding: 8px 12px;
     border-radius: 5px;
 }
+
+nav a.active{
+    background-color: white;
+    color: #004080; /* Change text color to match the navbar */
+    border-radius: 5px;
+}
 nav a + span {
     margin: 0 10px;
     color: white;
@@ -52,6 +58,27 @@ nav a:hover {
     text-decoration: underline;
     background: rgba(255, 255, 255, 0.2);
 
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background: white;
+    padding: 2px;
+}
+
+#searchInput {
+    border: none;
+    padding: 5px;
+    outline: none;
+}
+
+#searchBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 footer {
