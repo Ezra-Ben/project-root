@@ -52,12 +52,11 @@ document.getElementById("newsForm").addEventListener("submit", function(event) {
 function saveEvent(title, description, date, imageUrl) {
     let eventList = document.getElementById("eventList");
 
-    let eventItem = document.createElement("div");
-    eventItem.classList.add("event-item");
-
      // Generate a unique ID for the event
     let eventId = Date.now();  // Use timestamp as a unique ID
 
+    let eventItem = document.createElement("div");
+    eventItem.classList.add("event-item");
     eventItem.setAttribute("data-id", eventId);  // Set the data-id attribute
  
 
@@ -66,13 +65,15 @@ function saveEvent(title, description, date, imageUrl) {
         <p><strong>Date:</strong> ${date}</p>
         <p>${description}</p>
         ${imageUrl ? `<img src="${imageUrl}" alt="Event Image">` : ""}
+        <button class="delete-btn" onclick="deleteEvent(${eventId})">Delete</button>
+
     `;
 
     eventList.prepend(eventItem);
 
     // Save to Local Storage
     let events = JSON.parse(localStorage.getItem("events")) || [];
-    events.push({ title, description, date, imageUrl });
+    events.push({ id: eventId, title, description, date, imageUrl }); //Saving with ID
     localStorage.setItem("events", JSON.stringify(events));
 
     // Reset form
@@ -83,10 +84,19 @@ function displayEvents() {
     let events = JSON.parse(localStorage.getItem("events")) || [];
     let eventList = document.getElementById("eventList");
     eventList.innerHTML = "";
-
-    events.forEach(event => {
+    
+    // Check if dark mode is active
+    let isDarkMode = document.body.classList.contains("dark-mode");
+    
+        events.forEach(event => {
         let eventItem = document.createElement("div");
         eventItem.classList.add("event-item");
+        eventItem.setAttribute("data-id", event.id);  // Store ID in data attribute
+        
+        // If dark mode is active, apply dark mode-specific classes & styles
+        if (isDarkMode) {
+            eventItem.classList.add("dark-mode-event");
+        }
 
         eventItem.innerHTML = `
             <h3>${event.title}</h3>
@@ -102,6 +112,8 @@ function displayEvents() {
 
 function deleteEvent(eventId) {
     let events = JSON.parse(localStorage.getItem("events")) || [];
+
+    //Filter out the event to delete
     events = events.filter(event => event.id !== eventId);
     localStorage.setItem("events", JSON.stringify(events));
 
@@ -109,8 +121,6 @@ function deleteEvent(eventId) {
     if (eventItem) {
             eventItem.remove();
         }
-
-    displayEvents();
 }
 
 
