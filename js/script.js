@@ -1,9 +1,10 @@
 // Function to load HTML content into an element
-function loadHTML(elementId, filePath) {
+function loadHTML(elementId, filePath, callback) {
     fetch(filePath)
         .then(response => response.text())
         .then(data => {
             document.getElementById(elementId).innerHTML = data;
+            if (callback) callback();
         });
 }
 
@@ -79,17 +80,86 @@ function loadArticles() {
     }
 }
 
+function searchFunction() {
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let sections = document.querySelectorAll("section, article, h2, h3, h4"); // Select sections and headings
+
+    let found = false;
+    
+    sections.forEach(section => {
+        let text = section.textContent.toLowerCase();
+        
+        if (text.includes(input) && !found) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+            section.style.backgroundColor = "yellow"; // Highlight the section briefly
+            setTimeout(() => section.style.backgroundColor = "", 2000); // Remove highlight after 2 sec
+            found = true;
+        }
+    });
+
+    if (!found) {
+        alert("No matching section found!");
+    }
+}
+
+function setActiveNav() {
+    let currentPage = window.location.pathname.split("/").pop() || "index.html"; //Get the current page name & default to homepage
+    let navLinks = document.querySelectorAll("nav a");
+
+    //List of pages for each section
+
+    const pages = {
+        home:["index.html"],
+        about: ["about.html"],
+        contact: ["contact.html"],
+        news: ["news.html", "recent_news.html", "featured_news.html", "news_upload.html"],
+        upcoming_events: ["upcoming_events.html"]
+    };
+    
+    //Looping through each link in the nav bar
+    navLinks.forEach(link => {
+        link.classList.remove("active"); // Reset all links
+
+        let linkHref = link.getAttribute("href");
+        
+        //Checking for each page and marking the corresponding nav tab active
+        for (const page in pages) {
+        if (pages[page].includes(currentPage) && linkHref === `${page}.html`) {
+            link.classList.add("active");
+        }
+    }
+    });
+}
+
+
 // Wait for the (only) DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
     // Load header and footer (same for all pages)
-    loadHTML('header', 'header.html');
-    loadHTML('footer', 'footer.html');
+    loadHTML('header', 'header.html', function () {
+        // After the header is loaded, set up event listeners for search
+        const searchBtn = document.getElementById("searchBtn");
+        const searchInput = document.getElementById("searchInput");
 
+        if (searchBtn && searchInput) {
+            searchBtn.addEventListener("click", searchFunction);
+            searchInput.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {
+                    searchFunction();
+                }
+            });
+        }
+
+        // Setup dark mode after header is loaded
+        setupDarkMode();
+
+        // Set active navigation link after header is loaded
+        setActiveNav();
+    });
+
+    loadHTML('footer', 'footer.html');
+    
     // Load the relevant articles (this will load only the articles that are on the current page)
     loadArticles();
 });
 
-// For setting up dark mode after everything is loaded (including styles)
-window.onload = function() {
-    setupDarkMode();
-};
+
