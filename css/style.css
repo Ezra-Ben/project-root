@@ -127,6 +127,9 @@ body.dark-mode article {
     color: white;
     border-bottom: 1px solid #444; 
 }
+body.dark-mode article h3{
+    color: #fff;
+}
 body.dark-mode .event-submission-form {
     background-color: #2a2a2a; 
     color: white; 
@@ -135,7 +138,7 @@ body.dark-mode .event-submission-form {
 
 #dark-mode-toggle {
     position: fixed;
-    top: 0px;
+    top: 95px;
     right: 20px;
     padding: 10px;
     cursor: pointer;
@@ -180,3 +183,42 @@ body.dark-mode #newsForm button {
 body.dark-mode #newsForm button:hover {
     background-color: #45a049;  
 }
+
+/* Dark Mode Styles for Submitted News/Event Items */
+body.dark-mode .event-item {
+    background-color: #333; 
+    color: white; 
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #444;
+}
+
+body.dark-mode .event-item h3 {
+    color: #fff; 
+}
+
+body.dark-mode .event-item p {
+    color: #ccc;  
+}
+
+body.dark-mode .event-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+body.dark-mode .event-item .delete-btn {
+    background-color: #ff4d4d; 
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+body.dark-mode .event-item .delete-btn:hover {
+    background-color: #ff1a1a; 
+}
+
